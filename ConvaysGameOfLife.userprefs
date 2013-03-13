@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ConvaysGameOfLife/MainWindow.cs">
+    <Files>
+      <File FileName="ConvaysGameOfLife/Main.cs" Line="2" Column="11" />
+      <File FileName="ConvaysGameOfLife/MainWindow.cs" Line="8" Column="25" />
+      <File FileName="ConvaysGameOfLife/OutputConsole.cs" Line="18" Column="34" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
