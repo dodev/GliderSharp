@@ -14,7 +14,9 @@ public partial class MainWindow: Gtk.Window
 
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
+		// handling all the exceptions thrown during the existance of the window
 		ExceptionManager.UnhandledException += new UnhandledExceptionHandler (OnUnhandledException);
+
 		Build ();
 	}
 	
