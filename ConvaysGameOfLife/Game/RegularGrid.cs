@@ -10,15 +10,26 @@ namespace ConvaysGameOfLife.Game
 		private int cols;
 		private NeighbourContext komshi;
 
-		public RegularGrid (int rows, int cols, INeighbourStrategy strategy)
+		public RegularGrid (int rows, int cols, NeighbourContext nCtx)
 		{
 			// init private fields
 			this.rows = rows;
 			this.cols = cols;
-			this.komshi = new NeighbourContext (strategy, rows, cols);
+			this.komshi = nCtx;
 
 			// createing the grid itself
 			grid = new CellType[rows, cols];
+		}
+
+		public RegularGrid (int rows, int cols, NeighbourContext nCtx, CellType[,] seed)
+		{
+			// init private fields
+			this.rows = rows;
+			this.cols = cols;
+			this.komshi = nCtx;
+
+			// createing the grid itself
+			grid = seed;
 		}
 
 		public void WipeWith (CellType val)
