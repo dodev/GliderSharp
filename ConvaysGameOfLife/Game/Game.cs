@@ -4,12 +4,6 @@ namespace ConvaysGameOfLife.Game
 {
 	public class Game
 	{
-		public enum CellState
-		{	
-			DEAD,
-			ALIVE
-		}
-
 		private CellState[,] _gridCurr;
 		private CellState[,] _gridNew;
 		private int _interval;
