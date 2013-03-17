@@ -21,15 +21,12 @@ namespace ConvaysGameOfLife.Game
 			CellState currState = grid [row, col];
 
 			if (currState == CellState.ALIVE) {
-				if (aliveNeighbours < 2)
-					return CellState.DEAD; // dies from loneliness
-				else if (aliveNeighbours == 2 || aliveNeighbours == 3)
-					return CellState.ALIVE; // just the right amount of living beings around me :)
-				else if (aliveNeighbours > 3)
-					return CellState.DEAD; // dies from overpopulation
+				// a cell with 2 or 3 alive neighbours lives on
+				if (aliveNeighbours < 2 || aliveNeighbours > 3)
+					return CellState.DEAD; // dies from loneliness or overpopulation
 			} else {
 				if (aliveNeighbours == 3)
-					return CellState.ALIVE; // a new block animal is born :)
+					return CellState.ALIVE; // a new ALIVE block is born :)
 			}
 
 			return currState;

@@ -31,24 +31,24 @@ namespace ConvaysGameOfLife.Game
 				// previous row, current column
 				yield return new CellCoordinates (prevRow, col);
 
-				if (nextCol >= 0)
+				if (nextCol < cols)
 					yield return new CellCoordinates (prevRow, nextCol);
 			}
 
 			if (prevCol >= 0)
 				yield return new CellCoordinates (row, prevCol);
 
-			if (nextCol >= 0)
+			if (nextCol < cols)
 				yield return new CellCoordinates (row, nextCol);
 
-			if (nextRow >= 0) {
+			if (nextRow < rows) {
 				if (prevCol >= 0)
 					yield return new CellCoordinates (nextRow, prevCol);
 
 				// next row, current column
 				yield return new CellCoordinates (nextRow, col);
 
-				if (nextCol >= 0)
+				if (nextCol < cols)
 					yield return new CellCoordinates (nextRow, nextCol);
 			}
 		}

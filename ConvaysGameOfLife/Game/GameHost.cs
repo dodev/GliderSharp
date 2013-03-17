@@ -3,44 +3,52 @@ using System.Threading;
 using System.Collections.Generic;
 
 using ConvaysGameOfLife.Config;
+using ConvaysGameOfLife.Graphics;
 
 namespace ConvaysGameOfLife.Game
 {
-	public class Game
+	public class GameHost : IDisposable
 	{
 		private Configuration conf;
 		private RegularGrid<CellState> grid1;
 		private RegularGrid<CellState> grid2;
 		private bool initialized;
+		private GraphicsEngine gEngine;
+		private ISurfaceInterpretator gInterpretator;
 		private Thread gameThread;
 
-		public Game (Configuration conf)
+		public GameHost (Configuration conf)
 		{
 			this.conf = conf;
 			initialized = false;
-			gameThread = new Thread (this.Worker);
+			gEngine = new GraphicsEngine (conf);
+			gInterpretator = null;
+			gameThread = new Thread (new ThreadStart(this.Worker));
 		}
 
 		public void Init ()
 		{
 			NeighbourContext nCtx = new NeighbourContext (conf.Neighbourhood, conf.Rows, conf.Cols);
+
 			grid1 = new RegularGrid<CellState> (conf.Rows, conf.Cols, nCtx, conf.Seed);
-			grid1 = new RegularGrid<CellState> (conf.Rows, conf.Cols, nCtx);
+			grid2 = new RegularGrid<CellState> (conf.Rows, conf.Cols, nCtx);
+
+			gEngine.Init ();
 
 			initialized = true;
 		}
 
-
+		public void SetSurfaceInterpretator (ISurfaceInterpretator inter)
+		{
+			this.gInterpretator = inter;
+		}
 
 		public void Start ()
 		{
-			//if (!initialized)
-			//	throw new Exception ("You need to initialize the game first");
-
 			gameThread.Start ();
-
 		}
 
+		// TODO: stop and pause properly
 		public void Pause ()
 		{
 			gameThread.Abort ();
@@ -56,6 +64,9 @@ namespace ConvaysGameOfLife.Game
 		{
 			if (! initialized)
 				this.Init ();
+
+			if (gInterpretator == null)
+				throw new Exception ("The game host needs a surface interpretator to draw its results");
 
 			RegularGrid<CellState> bufGrid;
 			CellState bufState;
@@ -79,7 +90,12 @@ namespace ConvaysGameOfLife.Game
 					}
 				}
 
-				// TODO: generate "to display array"
+				// call the graphics engine to draw the current state on a frame
+				System.Drawing.Image frame = gEngine.DrawBlocks (pointsToDraw);
+				// draw it on the surface
+				gInterpretator.UpdateSurface (frame);
+				// and throw it away
+				frame.Dispose ();
 
 				// the list is no longer neede
 				pointsToDraw.Clear ();
@@ -96,6 +112,15 @@ namespace ConvaysGameOfLife.Game
 				Thread.Sleep (conf.TickInterval);
 			}
 		}
+		#region IDisposable implementation
+		public void Dispose ()
+		{
+			if (initialized) {
+				// TODO: dispose all disposable fields
+			}
+		}
+		#endregion
+
 	}
 }
 

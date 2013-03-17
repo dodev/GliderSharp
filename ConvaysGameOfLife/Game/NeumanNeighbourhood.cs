@@ -30,10 +30,10 @@ namespace ConvaysGameOfLife.Game
 			if (prevCol >= 0)
 				yield return new CellCoordinates (row, prevCol);
 
-			if (nextCol >= 0)
+			if (nextCol < cols)
 				yield return new CellCoordinates (row, nextCol);
 
-			if (nextRow >= 0) {
+			if (nextRow < rows) {
 				// next row, current column
 				yield return new CellCoordinates (nextRow, col);
 			}

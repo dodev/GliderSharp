@@ -6,11 +6,11 @@ namespace ConvaysGameOfLife.Config
 	{
 		Configuration Config { get; }
 
-		void SetRows (int rows);
+		//void SetRows (int rows);
 
-		void SetCols (int cols);
+		//void SetCols (int cols);
 
-		/// TODO: is this interface necessary?!
+		/// TODO: is this interface necessazry?!
 
 	}
 }

@@ -53,6 +53,7 @@ namespace ConvaysGameOfLife.Config
 
 		public CellState[,] Seed {
 			get { return seed; }
+			set { seed = value; }
 		}
 
 		public INeighbourStrategy Neighbourhood {

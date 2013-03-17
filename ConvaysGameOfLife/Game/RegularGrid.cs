@@ -61,7 +61,7 @@ namespace ConvaysGameOfLife.Game
 		public IEnumerable<CellType> GetNeighboursCellValues (int row, int col)
 		{
 			foreach (CellCoordinates c in komshi.GetNeighboursOf (row, col)) {
-				yield return grid [c.Row, c.Row];
+				yield return grid [c.Row, c.Col];
 			}
 		}
 	}
