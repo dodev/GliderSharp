@@ -12,7 +12,7 @@ namespace ConvaysGameOfLife.Graphics
 		Configuration config;
 		int blockSize;
 		Size imgSize;
-		Point gridBeiginning;
+		Point gridBeginning;
 		bool initialized;
 		//UpdateGameSurface Updater;
 
@@ -48,7 +48,7 @@ namespace ConvaysGameOfLife.Graphics
 			int beginningX = (imgSize.Width - gridWidth) / 2;
 			int beginningY = (imgSize.Height - gridHeight) / 2;
 
-			gridBeiginning = new Point (beginningX, beginningY);
+			gridBeginning = new Point (beginningX, beginningY);
 
 			initialized = true;
 		}
@@ -64,10 +64,18 @@ namespace ConvaysGameOfLife.Graphics
 			Bitmap img = new Bitmap (imgSize.Width, imgSize.Height);
 
 			using (System.Drawing.Graphics drawer = System.Drawing.Graphics.FromImage (img)) {
+				// the border of the world
+				drawer.DrawRectangle (Pens.LightGray, 
+				                      gridBeginning.X, 
+				                      gridBeginning.Y, 
+				                      blockSize * config.Cols, 
+				                      blockSize * config.Rows);
+
+				// draw the alive cells
 				foreach (CellCoordinates coord in coordinates) {
 					drawer.FillRectangle (Brushes.White, 
-					                      gridBeiginning.X + coord.Col * blockSize,
-					                      gridBeiginning.Y + coord.Row * blockSize,
+					                      gridBeginning.X + coord.Col * blockSize,
+					                      gridBeginning.Y + coord.Row * blockSize,
 					                      blockSize,
 					                      blockSize);
 				}
