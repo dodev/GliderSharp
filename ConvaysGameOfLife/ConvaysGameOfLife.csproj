@@ -72,6 +72,30 @@
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="OutputConsole.cs" />
+    <Compile Include="Game\INeighbourStrategy.cs" />
+    <Compile Include="Game\IRule.cs" />
+    <Compile Include="Game\RegularGrid.cs" />
+    <Compile Include="Game\CellCoordinates.cs" />
+    <Compile Include="Game\NeighbourContext.cs" />
+    <Compile Include="Game\NeumanNeighbourhood.cs" />
+    <Compile Include="Game\CellState.cs" />
+    <Compile Include="Game\ConwaysRules.cs" />
+    <Compile Include="Config\IConfigurator.cs" />
+    <Compile Include="Config\Configuration.cs" />
+    <Compile Include="Graphics\GraphicsEngine.cs" />
+    <Compile Include="Graphics\UpdateGameSurfaceDelegate.cs" />
+    <Compile Include="Config\DummyConfigurator.cs" />
+    <Compile Include="Game\GameHost.cs" />
+    <Compile Include="Graphics\ISurfaceInterpretator.cs" />
+    <Compile Include="Graphics\GtkSurfaceInterpretator.cs" />
+    <Compile Include="Config\RandomConfigurator.cs" />
+    <Compile Include="Game\MooreNeighbourhood.cs" />
+    <Compile Include="Game\MooreCyclicNeighbourhood.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Game\" />
+    <Folder Include="Config\" />
+    <Folder Include="Graphics\" />
+  </ItemGroup>
 </Project>
