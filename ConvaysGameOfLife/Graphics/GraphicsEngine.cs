@@ -21,7 +21,7 @@ namespace ConvaysGameOfLife.Graphics
 			this.config = config;
 
 			// TODO: make the img properties configurable
-			blockSize = 10;
+			blockSize = 3;
 			imgSize = new Size (800, 600);
 
 			initialized = false;
