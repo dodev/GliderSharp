@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="ConvaysGameOfLife/Main.cs">
     <Files>
-      <File FileName="ConvaysGameOfLife/Main.cs" Line="13" Column="59" />
+      <File FileName="ConvaysGameOfLife/Main.cs" Line="14" Column="36" />
       <File FileName="ConvaysGameOfLife/MainWindow.cs" Line="27" Column="34" />
       <File FileName="ConvaysGameOfLife/OutputConsole.cs" Line="18" Column="34" />
       <File FileName="ConvaysGameOfLife/Game/RegularGrid.cs" Line="64" Column="1" />
@@ -11,7 +11,7 @@
       <File FileName="ConvaysGameOfLife/Game/GameHost.cs" Line="34" Column="68" />
       <File FileName="ConvaysGameOfLife/Game/IRule.cs" Line="7" Column="69" />
       <File FileName="ConvaysGameOfLife/Game/NeighbourContext.cs" Line="31" Column="20" />
-      <File FileName="ConvaysGameOfLife/Game/MooreNeighbourhood.cs" Line="6" Column="24" />
+      <File FileName="ConvaysGameOfLife/Game/MooreNeighbourhood.cs" Line="22" Column="26" />
       <File FileName="ConvaysGameOfLife/Game/NeumanNeighbourhood.cs" Line="29" Column="4" />
       <File FileName="ConvaysGameOfLife/Game/CellState.cs" Line="8" Column="8" />
       <File FileName="ConvaysGameOfLife/Game/ConwaysRules.cs" Line="25" Column="51" />

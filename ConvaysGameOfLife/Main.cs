@@ -10,7 +10,7 @@ namespace ConvaysGameOfLife
 	{
 		public static void Main (string[] args)
 		{
-			IConfigurator configurator = new RandomConfigurator (190, 260, 0.25d);
+			IConfigurator configurator = new RandomConfigurator (190, 260, 0.2d);
 			//IConfigurator configurator = new DummyConfigurator ();
 			GameHost game = new GameHost (configurator.Config);
 
