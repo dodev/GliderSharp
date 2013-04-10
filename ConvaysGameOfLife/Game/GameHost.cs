@@ -9,6 +9,7 @@ namespace ConvaysGameOfLife.Game
 {
 	public class GameHost : IDisposable
 	{
+		private Configuration initConf;
 		private Configuration conf;
 		private RegularGrid<CellState> grid1;
 		private RegularGrid<CellState> grid2;
@@ -16,11 +17,14 @@ namespace ConvaysGameOfLife.Game
 		private GraphicsEngine gEngine;
 		private ISurfaceInterpretator gInterpretator;
 		private Thread gameThread;
+		private bool isStarted;
 
 		public GameHost (Configuration conf)
 		{
-			this.conf = conf;
+			initConf = conf;
+			this.conf = initConf.Clone () as Configuration;
 			initialized = false;
+			isStarted = false;
 			gEngine = new GraphicsEngine (conf);
 			gInterpretator = null;
 			gameThread = new Thread (new ThreadStart(this.Worker));
@@ -43,20 +47,41 @@ namespace ConvaysGameOfLife.Game
 			this.gInterpretator = inter;
 		}
 
-		public void Start ()
+		public bool Start ()
 		{
-			gameThread.Start ();
+			if (!isStarted) {
+				gameThread.Start ();
+				isStarted = true;
+				return true;
+			}
+			return false;
 		}
 
 		// TODO: stop and pause properly
 		public void Pause ()
 		{
-			gameThread.Abort ();
+			if (gameThread.IsAlive) {
+				//gameThread.
+			} else {
+				//gameThread.Resume ();
+			}
 		}
 
-		public void Stop ()
+		/// <summary>
+		/// Stop and resets the game
+		/// </summary>
+		public bool Stop ()
 		{
-			gameThread.Abort ();
+			if (isStarted) {
+				gameThread.Abort ();
+				gameThread.Join (); // wait for it to finish
+				gameThread = new Thread (new ThreadStart(this.Worker)); // create a new thread
+				conf = initConf.Clone () as Configuration; // reset the configuration
+				isStarted = false;
+				initialized = false;
+				return true;
+			}
+			return false;
 		}
 
 

@@ -33,6 +33,9 @@ public partial class MainWindow: Gtk.Window
 		if (image1.Pixbuf != null)
 			image1.Pixbuf.Dispose ();
 
+		// stop the game thread
+		host.Stop ();
+
 		// unsubscribe
 		ExceptionManager.UnhandledException -= OnUnhandledException;
 
@@ -66,13 +69,13 @@ public partial class MainWindow: Gtk.Window
 
 	protected void buttonStart_onClicked (object sender, EventArgs e)
 	{
-		console.Insert ("The game has started");
-		host.Start ();
+		if (host.Start ())
+			console.Insert ("The game has started");
 	}
 
 	protected void buttonStop_onClick (object sender, EventArgs e)
 	{
-		console.Insert ("The game has been stopped");
-		host.Stop ();
+		if (host.Stop ())
+			console.Insert ("The game has been stopped");
 	}
 }

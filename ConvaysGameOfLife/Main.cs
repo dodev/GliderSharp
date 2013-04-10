@@ -10,13 +10,16 @@ namespace ConvaysGameOfLife
 	{
 		public static void Main (string[] args)
 		{
-			IConfigurator configurator = new RandomConfigurator (190, 260, 0.2d);
+			IConfigurator configurator = new RandomConfigurator (60, 80, 0.25d);
 			//IConfigurator configurator = new DummyConfigurator ();
 			GameHost game = new GameHost (configurator.Config);
 
 			Application.Init ();
-			MainWindow win = new MainWindow (game);
-			win.Show ();
+			//MainWindow win = new MainWindow (game);
+			//win.Show ();
+
+			MainMenu menu = new MainMenu ();
+			menu.Show ();
 			Application.Run ();
 
 			game.Dispose ();

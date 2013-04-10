@@ -11,6 +11,7 @@ public partial class MainWindow
 	private global::Gtk.Button buttonPause;
 	private global::Gtk.ScrolledWindow GtkScrolledWindow;
 	private global::Gtk.TextView outputTextview;
+	private global::Gtk.Statusbar statusbar1;
 	
 	protected virtual void Build ()
 	{
@@ -86,6 +87,16 @@ public partial class MainWindow
 		w7.Position = 1;
 		w7.Expand = false;
 		w7.Fill = false;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.statusbar1 = new global::Gtk.Statusbar ();
+		this.statusbar1.Name = "statusbar1";
+		this.statusbar1.Spacing = 6;
+		this.vbox1.Add (this.statusbar1);
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar1]));
+		w8.PackType = ((global::Gtk.PackType)(1));
+		w8.Position = 2;
+		w8.Expand = false;
+		w8.Fill = false;
 		this.Add (this.vbox1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();

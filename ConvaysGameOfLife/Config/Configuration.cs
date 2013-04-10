@@ -3,7 +3,7 @@ using ConvaysGameOfLife.Game;
 
 namespace ConvaysGameOfLife.Config
 {
-	public class Configuration
+	public class Configuration : ICloneable, IDisposable
 	{
 		private int rows;
 		private int cols;
@@ -77,6 +77,26 @@ namespace ConvaysGameOfLife.Config
 		public void SetSeedsCell (int row, int col, CellState state) {
 			seed[row, col] = state;
 		}
+
+		#region ICloneable implementation
+		public object Clone ()
+		{
+			return new Configuration (rows, cols, 
+			                          (CellState[,])seed.Clone (), 
+			                          neighbourhood, rules, 
+			                          tickInterval);
+		}
+		#endregion
+
+		#region IDisposable implementation
+
+		public void Dispose ()
+		{
+			//seed.
+		}
+
+		#endregion
+
 	}
 }
 

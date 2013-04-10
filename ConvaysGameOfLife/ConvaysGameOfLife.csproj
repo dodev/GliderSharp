@@ -91,6 +91,7 @@
     <Compile Include="Config\RandomConfigurator.cs" />
     <Compile Include="Game\MooreNeighbourhood.cs" />
     <Compile Include="Game\MooreCyclicNeighbourhood.cs" />
+    <Compile Include="gtk-gui\ConvaysGameOfLife.MainMenu.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
