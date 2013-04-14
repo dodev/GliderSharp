@@ -11,45 +11,74 @@ namespace ConvaysGameOfLife.Game
 	{
 		private Configuration initConf;
 		private Configuration conf;
+
 		private RegularGrid<CellState> grid1;
 		private RegularGrid<CellState> grid2;
-		private bool initialized;
+
 		private GraphicsEngine gEngine;
 		private ISurfaceInterpretator gInterpretator;
-		private Thread gameThread;
-		private bool isStarted;
 
-		public GameHost (Configuration conf)
+		private Thread gameThread;
+
+		private bool isStarted;
+		private bool isInitialized;
+
+		public GameHost (Configuration conf, ISurfaceInterpretator gint)
 		{
 			initConf = conf;
-			this.conf = initConf.Clone () as Configuration;
-			initialized = false;
-			isStarted = false;
+
 			gEngine = new GraphicsEngine (conf);
-			gInterpretator = null;
-			gameThread = new Thread (new ThreadStart(this.Worker));
+			gInterpretator = gint;
+			gEngine.Init ();
+
+			isInitialized = false;
+			isStarted = false;
+
+			if (initConf.Seed != null)
+				DrawInitial ();
 		}
 
-		public void Init ()
+		public void AcceptSeed (CellState[,] seed)
 		{
+			if (seed != null) {
+				initConf.Seed = seed;
+				DrawInitial ();
+			}
+		}
+
+		void DrawInitial ()
+		{
+			List<CellCoordinates> pointsToDraw = new List<CellCoordinates> (); // TODO: init with a proper size
+			for (int i = 0; i < initConf.Rows; i++) {
+				for (int j = 0; j < initConf.Cols; j++) {
+					if (initConf.Seed[i,j] == CellState.ALIVE)
+						pointsToDraw.Add (new CellCoordinates(i, j));
+				}
+			}
+
+			System.Drawing.Image frame = gEngine.DrawBlocks (pointsToDraw);
+			// draw it on the surface
+			gInterpretator.UpdateSurface (frame);
+			// and throw it away
+			frame.Dispose ();
+		}
+
+		void Init ()
+		{
+			conf = initConf.Clone () as Configuration; // reset the configuration
+
 			NeighbourContext nCtx = new NeighbourContext (conf.Neighbourhood, conf.Rows, conf.Cols);
 
 			grid1 = new RegularGrid<CellState> (conf.Rows, conf.Cols, nCtx, conf.Seed);
 			grid2 = new RegularGrid<CellState> (conf.Rows, conf.Cols, nCtx);
 
-			gEngine.Init ();
-
-			initialized = true;
-		}
-
-		public void SetSurfaceInterpretator (ISurfaceInterpretator inter)
-		{
-			this.gInterpretator = inter;
+			isInitialized = true;
 		}
 
 		public bool Start ()
 		{
 			if (!isStarted) {
+				gameThread = new Thread (new ThreadStart(this.Worker)); // create a new thread
 				gameThread.Start ();
 				isStarted = true;
 				return true;
@@ -75,19 +104,17 @@ namespace ConvaysGameOfLife.Game
 			if (isStarted) {
 				gameThread.Abort ();
 				gameThread.Join (); // wait for it to finish
-				gameThread = new Thread (new ThreadStart(this.Worker)); // create a new thread
-				conf = initConf.Clone () as Configuration; // reset the configuration
+
 				isStarted = false;
-				initialized = false;
+				isInitialized = false;
 				return true;
 			}
 			return false;
 		}
 
-
 		private void Worker ()
 		{
-			if (! initialized)
+			if (! isInitialized)
 				this.Init ();
 
 			if (gInterpretator == null)
@@ -115,6 +142,7 @@ namespace ConvaysGameOfLife.Game
 					}
 				}
 
+				// TODO: make drawing more scalable (support different rendering engines)
 				// call the graphics engine to draw the current state on a frame
 				System.Drawing.Image frame = gEngine.DrawBlocks (pointsToDraw);
 				// draw it on the surface
@@ -140,7 +168,10 @@ namespace ConvaysGameOfLife.Game
 		#region IDisposable implementation
 		public void Dispose ()
 		{
-			if (initialized) {
+			if (isStarted)
+				Stop ();
+
+			if (isInitialized) {
 				// TODO: dispose all disposable fields
 			}
 		}

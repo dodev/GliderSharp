@@ -63,6 +63,18 @@ namespace ConvaysGameOfLife.Game
 		}
 		#endregion
 
+		public string ToString (bool full)
+		{
+			if (full)
+				return "Moore's cyclic neighbourhood";
+			else
+				return "Moore's cyclic";
+		}
+
+		public override string ToString ()
+		{
+			return ToString (false);
+		}
 	}
 }
 

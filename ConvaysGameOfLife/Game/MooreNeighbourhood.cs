@@ -60,6 +60,18 @@ namespace ConvaysGameOfLife.Game
 		}
 		#endregion
 
+		public string ToString (bool full)
+		{
+			if (full)
+				return "Moore's neighbourhood";
+			else
+				return "Moore's";
+		}
+
+		public override string ToString ()
+		{
+			return ToString (false);
+		}
 	}
 }
 

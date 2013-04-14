@@ -20,13 +20,11 @@ namespace ConvaysGameOfLife.Graphics
 		{
 			this.config = config;
 
-			// TODO: make the img properties configurable
-			blockSize = 10;
-			imgSize = new Size (800, 600);
+			// TODO: make blocksize configurable, depending on the img size and the num of blocks
+			blockSize = BasicConfig.MaxBlockSide;
+			imgSize = new Size (BasicConfig.SurfaceWidth, BasicConfig.SurfaceHeight);
 
 			initialized = false;
-
-			//Updater = updr;
 		}
 
 		public void Init ()
@@ -53,12 +51,6 @@ namespace ConvaysGameOfLife.Graphics
 			initialized = true;
 		}
 
-
-//		private void DrawBlock (Graphics drawer, int row, int col)
-//		{
-//
-//		}
-
 		public Image DrawBlocks (IEnumerable<CellCoordinates> coordinates)
 		{
 			Bitmap img = new Bitmap (imgSize.Width, imgSize.Height);
@@ -81,11 +73,6 @@ namespace ConvaysGameOfLife.Graphics
 				}
 			}
 
-			/*if (Updater == null)
-				throw new Exception ("Graphics engine can't update the game surface, because no drawing delegate was provided");
-			else
-				Updater (img);
-			*/
 			return img;
 		}
 	}

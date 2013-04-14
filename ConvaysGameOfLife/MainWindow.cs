@@ -10,21 +10,29 @@ using GLib;
 using ConvaysGameOfLife;
 using ConvaysGameOfLife.Game;
 using ConvaysGameOfLife.Graphics;
+using ConvaysGameOfLife.Config;
 
 public partial class MainWindow: Gtk.Window
 {	
 	OutputConsole console;
-	GameHost host;
+	GameController controller;
+	//GameHost host;
 
-	public MainWindow (GameHost host): base (Gtk.WindowType.Toplevel)
+	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		// handling all the exceptions thrown during the existance of the window
 		ExceptionManager.UnhandledException += new UnhandledExceptionHandler (OnUnhandledException);
-		this.host = host;
 
 		Build ();
 
-		host.SetSurfaceInterpretator (new GtkSurfaceInterpretator (this.image1));
+		controller = new GameController ();
+		controller.StateChanged += controller_HandleStateChanged;
+	}
+
+	void controller_HandleStateChanged (object sender, GameStateEventArgs e)
+	{
+		// TODO: switch active GUI components depending on the state
+		// TODO: echo state changes in console
 	}
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -33,8 +41,7 @@ public partial class MainWindow: Gtk.Window
 		if (image1.Pixbuf != null)
 			image1.Pixbuf.Dispose ();
 
-		// stop the game thread
-		host.Stop ();
+		controller.Dispose ();
 
 		// unsubscribe
 		ExceptionManager.UnhandledException -= OnUnhandledException;
@@ -50,8 +57,7 @@ public partial class MainWindow: Gtk.Window
 
 	protected void MainWindow_onmapEvent (object o, MapEventArgs args)
 	{
-		// TODO: make the image size configurable
-		Bitmap image = new Bitmap (800, 600);
+		Bitmap image = new Bitmap (BasicConfig.SurfaceWidth, BasicConfig.SurfaceHeight);
 
 		using (MemoryStream stream = new MemoryStream ()) {
 			image.Save (stream, ImageFormat.Bmp);
@@ -61,7 +67,6 @@ public partial class MainWindow: Gtk.Window
 
 		image.Dispose ();
 
-		//Gtk.TextIter outputIter = outputTextview.Buffer.StartIter;
 		console = new OutputConsole (this.outputTextview);
 
 		console.Insert ("The display image was mapped");
@@ -69,13 +74,45 @@ public partial class MainWindow: Gtk.Window
 
 	protected void buttonStart_onClicked (object sender, EventArgs e)
 	{
-		if (host.Start ())
-			console.Insert ("The game has started");
+		controller.GameStart ();
 	}
 
 	protected void buttonStop_onClick (object sender, EventArgs e)
 	{
-		if (host.Stop ())
-			console.Insert ("The game has been stopped");
+		controller.GameStop ();
+	}
+
+	protected void menuItemNew_onActivated (object sender, EventArgs e)
+	{
+		IConfigurator configurator = new ConfigWindow ();
+		configurator.Finished += ConfWindow_HandleFinished;
+		configurator.Show ();
+		controller.StartConf ();
+	}
+
+	void ConfWindow_HandleFinished (object sender, ConfiguratorEventArgs args)
+	{
+		if (sender != null) {
+			controller.LoadConfNSurface (args.Conf, new GtkSurfaceInterpretator (this.image1));
+
+			ISeedDesigner sdesigner;
+
+			switch (args.SeedDesigner) {
+			case SeedDesignerEnum.Random:
+				sdesigner = new RandomSeedGenerator ();
+				break;
+			default:
+				throw new Exception ("Unknown seed designer requested");
+			}
+			sdesigner.Init (args.Conf);
+			sdesigner.Finished += SeedDesigner_HandleFinished;
+			sdesigner.Show ();
+		}
+	}
+
+	void SeedDesigner_HandleFinished (object sender, SeedEventArgs e)
+	{
+		if (sender != null)
+			controller.LoadSeed (e.Seed);
 	}
 }

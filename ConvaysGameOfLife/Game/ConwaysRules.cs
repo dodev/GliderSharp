@@ -33,6 +33,18 @@ namespace ConvaysGameOfLife.Game
 		}
 		#endregion
 
+		public string ToString (bool full)
+		{
+			if (full)
+				return "Conway's rules";
+			else
+				return "Conway's";
+		}
+
+		public override string ToString ()
+		{
+			return ToString (false);
+		}
 	}
 }
 

@@ -84,14 +84,23 @@
     <Compile Include="Config\Configuration.cs" />
     <Compile Include="Graphics\GraphicsEngine.cs" />
     <Compile Include="Graphics\UpdateGameSurfaceDelegate.cs" />
-    <Compile Include="Config\DummyConfigurator.cs" />
     <Compile Include="Game\GameHost.cs" />
     <Compile Include="Graphics\ISurfaceInterpretator.cs" />
     <Compile Include="Graphics\GtkSurfaceInterpretator.cs" />
-    <Compile Include="Config\RandomConfigurator.cs" />
     <Compile Include="Game\MooreNeighbourhood.cs" />
     <Compile Include="Game\MooreCyclicNeighbourhood.cs" />
-    <Compile Include="gtk-gui\ConvaysGameOfLife.MainMenu.cs" />
+    <Compile Include="Game\GameController.cs" />
+    <Compile Include="Game\GameStateEventArgs.cs" />
+    <Compile Include="Game\GameState.cs" />
+    <Compile Include="ConfigWindow.cs" />
+    <Compile Include="gtk-gui\ConvaysGameOfLife.ConfigWindow.cs" />
+    <Compile Include="Config\BasicConfig.cs" />
+    <Compile Include="Config\ISeedDesigner.cs" />
+    <Compile Include="RandomSeedGenerator.cs" />
+    <Compile Include="gtk-gui\ConvaysGameOfLife.RandomSeedGenerator.cs" />
+    <Compile Include="Config\ConfiguratorEventArgs.cs" />
+    <Compile Include="Config\SeedEventArgs.cs" />
+    <Compile Include="Config\SeedDesignerEnum.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

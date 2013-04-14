@@ -4,14 +4,15 @@ namespace ConvaysGameOfLife.Config
 {
 	public interface IConfigurator
 	{
+		/*
 		Configuration Config { get; }
 
-		//void SetRows (int rows);
+		ISeedDesigner SeedDesigner { get; }
+		*/
+		void Show ();
 
-		//void SetCols (int cols);
-
-		/// TODO: is this interface necessazry?!
-
+		event EventHandler<ConfiguratorEventArgs> Finished;
 	}
+
 }
 
