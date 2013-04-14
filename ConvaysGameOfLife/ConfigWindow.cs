@@ -101,8 +101,8 @@ namespace ConvaysGameOfLife
 
 		protected void buttonAccept_onClicked (object sender, EventArgs e)
 		{
-			OnFinish (true);
 			HarvestForm ();
+			OnFinish (true);
 			this.Destroy ();
 		}
 

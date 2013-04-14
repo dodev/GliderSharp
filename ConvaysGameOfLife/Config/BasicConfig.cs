@@ -65,7 +65,8 @@ namespace ConvaysGameOfLife.Config
 		}
 
 		static SeedDesignerEnum[] designers = new SeedDesignerEnum[] {
-			SeedDesignerEnum.Random
+			SeedDesignerEnum.Random,
+			SeedDesignerEnum.Visual
 		};
 
 		public static SeedDesignerEnum[] SeedDesigners {

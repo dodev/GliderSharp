@@ -20,6 +20,12 @@ namespace ConvaysGameOfLife.Game
 		public int Col {
 			get { return col; }
 		}
+
+		// there won't be collision if the grid is less than 1000x1000 big
+		public override int GetHashCode ()
+		{
+			return row * 1000 + col;
+		}
 	}
 }
 

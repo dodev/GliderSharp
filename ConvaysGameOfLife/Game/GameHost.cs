@@ -30,6 +30,7 @@ namespace ConvaysGameOfLife.Game
 			gEngine = new GraphicsEngine (conf);
 			gInterpretator = gint;
 			gEngine.Init ();
+			gEngine.ShowBorder = true;
 
 			isInitialized = false;
 			isStarted = false;

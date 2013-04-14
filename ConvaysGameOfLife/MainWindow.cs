@@ -101,6 +101,9 @@ public partial class MainWindow: Gtk.Window
 			case SeedDesignerEnum.Random:
 				sdesigner = new RandomSeedGenerator ();
 				break;
+			case SeedDesignerEnum.Visual:
+				sdesigner = new VisualSeedDesigner ();
+				break;
 			default:
 				throw new Exception ("Unknown seed designer requested");
 			}

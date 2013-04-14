@@ -13,7 +13,13 @@ namespace ConvaysGameOfLife.Graphics
 		int blockSize;
 		Size imgSize;
 		Point gridBeginning;
+		Point gridEnd;
+		Size gridSize;
 		bool initialized;
+		Image grid;
+		bool showGrid;
+		Image border;
+		bool showBorder;
 		//UpdateGameSurface Updater;
 
 		public GraphicsEngine (Configuration config/*, UpdateGameSurface updr*/)
@@ -43,12 +49,106 @@ namespace ConvaysGameOfLife.Graphics
 			if (gridHeight > imgSize.Height)
 				throw new Exception ("Too many cells allocated vertically");
 
+			int sizeX = blockSize * config.Cols;
+			int sizeY = blockSize * config.Rows;
+
+			gridSize = new Size (sizeX, sizeY);
+
 			int beginningX = (imgSize.Width - gridWidth) / 2;
 			int beginningY = (imgSize.Height - gridHeight) / 2;
 
 			gridBeginning = new Point (beginningX, beginningY);
 
+			int endX = beginningX + sizeX;
+			int endY = beginningY + sizeY;
+
+			gridEnd = new Point (endX, endY);
+
+			grid = null;
+			showGrid = false;
+
+			border = null;
+			showBorder = false;
+
 			initialized = true;
+		}
+
+		public bool ShowGrid {
+			set {
+				if (value && initialized && grid == null)
+					CreateGrid ();
+
+				showGrid = value;
+			}
+		}
+
+		void CreateGrid ()
+		{
+			grid = new Bitmap (gridSize.Width, gridSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+			using (System.Drawing.Graphics drawer = System.Drawing.Graphics.FromImage (grid)) {
+				Pen drawingPen = new Pen (Color.DarkGray);
+
+				int offset = blockSize - 1;
+				// vertical lines
+				while (offset < gridSize.Width) {
+					drawer.DrawLine (
+						drawingPen,
+						offset,
+						0,
+						offset, 
+						gridSize.Height);
+					offset += blockSize;
+				}
+
+				offset = blockSize - 1;
+				while (offset < gridSize.Height) {
+					drawer.DrawLine (
+						drawingPen,
+						0,
+						offset,
+						gridSize.Width,
+						offset);
+					offset += blockSize;
+				}
+
+				drawingPen.Dispose ();           
+			}
+		}
+
+		public bool ShowBorder {
+			set {
+				if (value && initialized && border == null)
+					CreateBorder ();
+
+				showBorder = value;
+			}
+		}
+
+		void CreateBorder ()
+		{
+			border = new Bitmap (gridSize.Width, gridSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+			using (System.Drawing.Graphics drawer = System.Drawing.Graphics.FromImage (border)) {
+				drawer.DrawRectangle (Pens.DarkGray, 
+			                      0, 
+			                      0, 
+			                      gridSize.Width, 
+			                      gridSize.Height);
+			}
+		}
+
+		public CellCoordinates GetCellByXY (double x, double y)
+		{
+			if (x < gridBeginning.X || x > gridEnd.X
+			    || y < gridBeginning.Y || y > gridEnd.Y)
+				return null;
+
+			double absX = x - gridBeginning.X;
+			double absY = y - gridBeginning.Y;
+
+			int row = (int)Math.Floor (absY / blockSize);
+			int col = (int)Math.Floor (absX / blockSize);
+
+			return new CellCoordinates (row, col);
 		}
 
 		public Image DrawBlocks (IEnumerable<CellCoordinates> coordinates)
@@ -56,12 +156,6 @@ namespace ConvaysGameOfLife.Graphics
 			Bitmap img = new Bitmap (imgSize.Width, imgSize.Height);
 
 			using (System.Drawing.Graphics drawer = System.Drawing.Graphics.FromImage (img)) {
-				// the border of the world
-				drawer.DrawRectangle (Pens.LightGray, 
-				                      gridBeginning.X, 
-				                      gridBeginning.Y, 
-				                      blockSize * config.Cols, 
-				                      blockSize * config.Rows);
 
 				// draw the alive cells
 				foreach (CellCoordinates coord in coordinates) {
@@ -71,6 +165,14 @@ namespace ConvaysGameOfLife.Graphics
 					                      blockSize,
 					                      blockSize);
 				}
+
+				// the border of the world
+				if (showBorder)
+					drawer.DrawImage (border, gridBeginning.X, gridBeginning.Y);
+
+				// the grid
+				if (showGrid)
+					drawer.DrawImage (grid, gridBeginning.X, gridBeginning.Y);
 			}
 
 			return img;
