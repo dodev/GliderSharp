@@ -84,6 +84,7 @@ public partial class MainWindow: Gtk.Window
 
 	protected void menuItemNew_onActivated (object sender, EventArgs e)
 	{
+		controller.CancelRun ();
 		IConfigurator configurator = new ConfigWindow ();
 		configurator.Finished += ConfWindow_HandleFinished;
 		configurator.Show ();

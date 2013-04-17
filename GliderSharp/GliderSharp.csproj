@@ -99,9 +99,9 @@
     <Compile Include="Config\SeedEventArgs.cs" />
     <Compile Include="Config\SeedDesignerEnum.cs" />
     <Compile Include="VisualSeedDesigner.cs" />
+    <Compile Include="gtk-gui\GliderSharp.VisualSeedDesigner.cs" />
     <Compile Include="gtk-gui\GliderSharp.ConfigWindow.cs" />
     <Compile Include="gtk-gui\GliderSharp.RandomSeedGenerator.cs" />
-    <Compile Include="gtk-gui\GliderSharp.VisualSeedDesigner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
