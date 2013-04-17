@@ -1,6 +1,6 @@
 using System;
 
-namespace ConvaysGameOfLife.Graphics
+namespace GliderSharp.Graphics
 {
 	public interface ISurfaceInterpretator
 	{

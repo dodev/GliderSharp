@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 using Gtk;
 using Gdk;
 
-namespace ConvaysGameOfLife.Graphics
+namespace GliderSharp.Graphics
 {
 	public class GtkSurfaceInterpretator : ISurfaceInterpretator
 	{

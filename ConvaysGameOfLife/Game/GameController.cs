@@ -1,9 +1,9 @@
 using System;
 
-using ConvaysGameOfLife.Config;
-using ConvaysGameOfLife.Graphics;
+using GliderSharp.Config;
+using GliderSharp.Graphics;
 
-namespace ConvaysGameOfLife.Game
+namespace GliderSharp.Game
 {
 	public class GameController : IDisposable
 	{

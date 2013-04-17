@@ -7,11 +7,11 @@ using System.Collections.Generic;
 using Gdk;
 using Gtk;
 
-using ConvaysGameOfLife.Config;
-using ConvaysGameOfLife.Game;
-using ConvaysGameOfLife.Graphics;
+using GliderSharp.Config;
+using GliderSharp.Game;
+using GliderSharp.Graphics;
 
-namespace ConvaysGameOfLife
+namespace GliderSharp
 {
 	public partial class VisualSeedDesigner : Gtk.Window, ISeedDesigner
 	{

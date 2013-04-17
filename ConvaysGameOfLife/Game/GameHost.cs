@@ -2,10 +2,10 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 
-using ConvaysGameOfLife.Config;
-using ConvaysGameOfLife.Graphics;
+using GliderSharp.Config;
+using GliderSharp.Graphics;
 
-namespace ConvaysGameOfLife.Game
+namespace GliderSharp.Game
 {
 	public class GameHost : IDisposable
 	{

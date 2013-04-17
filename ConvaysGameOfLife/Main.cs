@@ -1,10 +1,10 @@
 using System;
 using Gtk;
 
-using ConvaysGameOfLife.Game;
-using ConvaysGameOfLife.Config;
+using GliderSharp.Game;
+using GliderSharp.Config;
 
-namespace ConvaysGameOfLife
+namespace GliderSharp
 {
 	class MainClass
 	{

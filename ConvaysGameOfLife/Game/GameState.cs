@@ -1,6 +1,6 @@
 using System;
 
-namespace ConvaysGameOfLife.Game
+namespace GliderSharp.Game
 {
 	public enum GameState {
 		BLANK,

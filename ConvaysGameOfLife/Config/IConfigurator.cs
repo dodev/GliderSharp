@@ -1,6 +1,6 @@
 using System;
 
-namespace ConvaysGameOfLife.Config
+namespace GliderSharp.Config
 {
 	public interface IConfigurator
 	{

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-using ConvaysGameOfLife.Config;
-using ConvaysGameOfLife.Game;
+using GliderSharp.Config;
+using GliderSharp.Game;
 
-namespace ConvaysGameOfLife
+namespace GliderSharp
 {
 	public partial class ConfigWindow : Gtk.Window, IConfigurator
 	{

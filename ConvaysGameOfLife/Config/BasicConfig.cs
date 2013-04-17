@@ -1,8 +1,8 @@
 using System;
 
-using ConvaysGameOfLife.Game;
+using GliderSharp.Game;
 
-namespace ConvaysGameOfLife.Config
+namespace GliderSharp.Config
 {
 	public static class BasicConfig
 	{

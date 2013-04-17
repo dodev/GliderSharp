@@ -1,9 +1,9 @@
 using System;
 
-using ConvaysGameOfLife.Game;
-using ConvaysGameOfLife.Config;
+using GliderSharp.Game;
+using GliderSharp.Config;
 
-namespace ConvaysGameOfLife
+namespace GliderSharp
 {
 	public partial class RandomSeedGenerator : Gtk.Window, ISeedDesigner
 	{

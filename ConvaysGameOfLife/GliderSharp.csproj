@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6CF80FD1-C5D5-44DD-8FAB-EA74FACF3B6C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ConvaysGameOfLife</RootNamespace>
+    <RootNamespace>GliderSharp</RootNamespace>
     <AssemblyName>ConvaysGameOfLife</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -93,16 +93,16 @@
     <Compile Include="Game\GameStateEventArgs.cs" />
     <Compile Include="Game\GameState.cs" />
     <Compile Include="ConfigWindow.cs" />
-    <Compile Include="gtk-gui\ConvaysGameOfLife.ConfigWindow.cs" />
     <Compile Include="Config\BasicConfig.cs" />
     <Compile Include="Config\ISeedDesigner.cs" />
     <Compile Include="RandomSeedGenerator.cs" />
-    <Compile Include="gtk-gui\ConvaysGameOfLife.RandomSeedGenerator.cs" />
     <Compile Include="Config\ConfiguratorEventArgs.cs" />
     <Compile Include="Config\SeedEventArgs.cs" />
     <Compile Include="Config\SeedDesignerEnum.cs" />
     <Compile Include="VisualSeedDesigner.cs" />
-    <Compile Include="gtk-gui\ConvaysGameOfLife.VisualSeedDesigner.cs" />
+    <Compile Include="gtk-gui\GliderSharp.ConfigWindow.cs" />
+    <Compile Include="gtk-gui\GliderSharp.RandomSeedGenerator.cs" />
+    <Compile Include="gtk-gui\GliderSharp.VisualSeedDesigner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

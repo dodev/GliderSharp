@@ -1,7 +1,7 @@
 using System;
 using Gtk;
 
-namespace ConvaysGameOfLife
+namespace GliderSharp
 {
 	public class OutputConsole
 	{

@@ -1,8 +1,8 @@
 using System;
 
-using ConvaysGameOfLife.Game;
+using GliderSharp.Game;
 
-namespace ConvaysGameOfLife
+namespace GliderSharp
 {
 
 	public class SeedEventArgs : EventArgs

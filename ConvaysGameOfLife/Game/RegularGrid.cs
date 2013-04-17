@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ConvaysGameOfLife.Game
+namespace GliderSharp.Game
 {
 	public class RegularGrid <CellType>
 	{

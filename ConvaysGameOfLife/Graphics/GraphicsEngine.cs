@@ -2,10 +2,10 @@ using System;
 using System.Drawing;
 using System.Collections.Generic;
 
-using ConvaysGameOfLife.Config;
-using ConvaysGameOfLife.Game;
+using GliderSharp.Config;
+using GliderSharp.Game;
 
-namespace ConvaysGameOfLife.Graphics
+namespace GliderSharp.Graphics
 {
 	public class GraphicsEngine
 	{

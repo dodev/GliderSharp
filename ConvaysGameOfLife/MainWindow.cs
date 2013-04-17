@@ -7,10 +7,10 @@ using Gtk;
 using Gdk;
 using GLib;
 
-using ConvaysGameOfLife;
-using ConvaysGameOfLife.Game;
-using ConvaysGameOfLife.Graphics;
-using ConvaysGameOfLife.Config;
+using GliderSharp;
+using GliderSharp.Game;
+using GliderSharp.Graphics;
+using GliderSharp.Config;
 
 public partial class MainWindow: Gtk.Window
 {	

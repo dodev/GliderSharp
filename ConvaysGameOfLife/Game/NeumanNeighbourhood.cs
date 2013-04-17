@@ -1,6 +1,6 @@
 using System;
 
-namespace ConvaysGameOfLife.Game
+namespace GliderSharp.Game
 {
 	public class NeumanNeighbourhood : INeighbourStrategy
 	{
