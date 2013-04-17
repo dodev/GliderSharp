@@ -15,7 +15,7 @@ namespace ConvaysGameOfLife.Config
 		}
 
 		public static int Interval {
-			get { return 1000; }
+			get { return 100; }
 		}
 
 		public static int SurfaceWidth {
@@ -74,7 +74,7 @@ namespace ConvaysGameOfLife.Config
 		}
 
 		public static SeedDesignerEnum DefaultSeedDesigner {
-			get { return designers[0]; }
+			get { return designers[1]; } // visual
 		}
 	}
 

@@ -50,7 +50,6 @@ namespace ConvaysGameOfLife
 		{
 			this.conf = conf;
 			engine = new GraphicsEngine (conf);
-			engine.Init ();
 			engine.ShowGrid = true;
 			engine.ShowBorder = true;
 			gtkInterpretator = new GtkSurfaceInterpretator (image1);

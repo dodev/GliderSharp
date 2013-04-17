@@ -15,28 +15,38 @@ namespace ConvaysGameOfLife.Graphics
 		Point gridBeginning;
 		Point gridEnd;
 		Size gridSize;
-		bool initialized;
 		Image grid;
 		bool showGrid;
 		Image border;
 		bool showBorder;
-		//UpdateGameSurface Updater;
 
-		public GraphicsEngine (Configuration config/*, UpdateGameSurface updr*/)
+		public GraphicsEngine (Configuration config)
 		{
 			this.config = config;
-
-			// TODO: make blocksize configurable, depending on the img size and the num of blocks
-			blockSize = BasicConfig.MaxBlockSide;
 			imgSize = new Size (BasicConfig.SurfaceWidth, BasicConfig.SurfaceHeight);
 
-			initialized = false;
-		}
+			// determining the block's side depending on the image size
+			// and the requested grid width and height
+			blockSize = BasicConfig.MaxBlockSide;
 
-		public void Init ()
-		{
-			if (initialized)
-				return;
+			if (blockSize * config.Cols > imgSize.Width) {
+				// trying the rounded value
+				blockSize = (int)Math.Round (imgSize.Width / (double)config.Cols);
+
+				// if the rounded value is too much, get the floored
+				if (blockSize * config.Cols > imgSize.Width)
+					blockSize--;
+			}
+
+			if (blockSize * config.Rows > imgSize.Height) {
+				blockSize = (int)Math.Round (imgSize.Height / (double)config.Rows);
+
+				if (blockSize * config.Rows > imgSize.Height)
+					blockSize--;
+			}
+
+			if (blockSize < BasicConfig.MinBlockSide)
+				throw new Exception (String.Format ("Blocks can not be smaller than {0}. Failed to allocate grid's dimensions.", BasicConfig.MinBlockSide));
 
 			// calculate where the image should be
 			int gridWidth = config.Cols * blockSize;
@@ -54,8 +64,8 @@ namespace ConvaysGameOfLife.Graphics
 
 			gridSize = new Size (sizeX, sizeY);
 
-			int beginningX = (imgSize.Width - gridWidth) / 2;
-			int beginningY = (imgSize.Height - gridHeight) / 2;
+			int beginningX = (int)Math.Floor ((imgSize.Width - gridWidth) / 2d);
+			int beginningY = (int)Math.Floor ((imgSize.Height - gridHeight) / 2d);
 
 			gridBeginning = new Point (beginningX, beginningY);
 
@@ -69,13 +79,11 @@ namespace ConvaysGameOfLife.Graphics
 
 			border = null;
 			showBorder = false;
-
-			initialized = true;
 		}
 
 		public bool ShowGrid {
 			set {
-				if (value && initialized && grid == null)
+				if (value && grid == null)
 					CreateGrid ();
 
 				showGrid = value;
@@ -117,7 +125,7 @@ namespace ConvaysGameOfLife.Graphics
 
 		public bool ShowBorder {
 			set {
-				if (value && initialized && border == null)
+				if (value && border == null)
 					CreateBorder ();
 
 				showBorder = value;
@@ -131,15 +139,15 @@ namespace ConvaysGameOfLife.Graphics
 				drawer.DrawRectangle (Pens.DarkGray, 
 			                      0, 
 			                      0, 
-			                      gridSize.Width, 
-			                      gridSize.Height);
+			                      gridSize.Width - 1, 
+			                      gridSize.Height - 1);
 			}
 		}
 
 		public CellCoordinates GetCellByXY (double x, double y)
 		{
-			if (x < gridBeginning.X || x > gridEnd.X
-			    || y < gridBeginning.Y || y > gridEnd.Y)
+			if (gridBeginning.X > x || gridEnd.X <= x
+			    || gridBeginning.Y > y || gridEnd.Y <= y)
 				return null;
 
 			double absX = x - gridBeginning.X;

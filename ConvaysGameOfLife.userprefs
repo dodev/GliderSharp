@@ -1,14 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ConvaysGameOfLife/Game/ConwaysRules.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ConvaysGameOfLife/VisualSeedDesigner.cs">
     <Files>
       <File FileName="ConvaysGameOfLife/Main.cs" Line="1" Column="1" />
-      <File FileName="ConvaysGameOfLife/MainWindow.cs" Line="35" Column="41" />
+      <File FileName="ConvaysGameOfLife/MainWindow.cs" Line="96" Column="1" />
       <File FileName="ConvaysGameOfLife/OutputConsole.cs" Line="1" Column="1" />
       <File FileName="ConvaysGameOfLife/Game/RegularGrid.cs" Line="1" Column="1" />
       <File FileName="ConvaysGameOfLife/Game/INeighbourStrategy.cs" Line="1" Column="1" />
-      <File FileName="ConvaysGameOfLife/Game/CellCoordinates.cs" Line="1" Column="1" />
-      <File FileName="ConvaysGameOfLife/Game/GameHost.cs" Line="145" Column="77" />
+      <File FileName="ConvaysGameOfLife/Game/CellCoordinates.cs" Line="24" Column="69" />
+      <File FileName="ConvaysGameOfLife/Game/GameHost.cs" Line="40" Column="4" />
       <File FileName="ConvaysGameOfLife/Game/IRule.cs" Line="1" Column="1" />
       <File FileName="ConvaysGameOfLife/Game/NeighbourContext.cs" Line="1" Column="1" />
       <File FileName="ConvaysGameOfLife/Game/MooreNeighbourhood.cs" Line="1" Column="1" />
@@ -16,22 +16,24 @@
       <File FileName="ConvaysGameOfLife/Game/CellState.cs" Line="1" Column="1" />
       <File FileName="ConvaysGameOfLife/Game/ConwaysRules.cs" Line="1" Column="1" />
       <File FileName="ConvaysGameOfLife/Config/IConfigurator.cs" Line="1" Column="1" />
-      <File FileName="ConvaysGameOfLife/Config/Configuration.cs" Line="95" Column="11" />
-      <File FileName="ConvaysGameOfLife/Graphics/GraphicsEngine.cs" Line="52" Column="4" />
+      <File FileName="ConvaysGameOfLife/Config/Configuration.cs" Line="1" Column="1" />
+      <File FileName="ConvaysGameOfLife/Graphics/GraphicsEngine.cs" Line="130" Column="85" />
       <File FileName="ConvaysGameOfLife/Graphics/UpdateGameSurfaceDelegate.cs" Line="1" Column="1" />
       <File FileName="ConvaysGameOfLife/Graphics/ISurfaceInterpretator.cs" Line="1" Column="1" />
       <File FileName="ConvaysGameOfLife/Graphics/GtkSurfaceInterpretator.cs" Line="1" Column="1" />
       <File FileName="ConvaysGameOfLife/Game/MooreCyclicNeighbourhood.cs" Line="1" Column="1" />
       <File FileName="ConvaysGameOfLife/Game/GameState.cs" Line="1" Column="1" />
-      <File FileName="ConvaysGameOfLife/Game/GameController.cs" Line="18" Column="8" />
+      <File FileName="ConvaysGameOfLife/Game/GameController.cs" Line="1" Column="1" />
       <File FileName="ConvaysGameOfLife/Game/GameStateEventArgs.cs" Line="1" Column="1" />
-      <File FileName="ConvaysGameOfLife/ConfigWindow.cs" Line="130" Column="3" />
-      <File FileName="ConvaysGameOfLife/Config/BasicConfig.cs" Line="1" Column="1" />
-      <File FileName="ConvaysGameOfLife/Config/ISeedDesigner.cs" Line="10" Column="34" />
-      <File FileName="ConvaysGameOfLife/RandomSeedGenerator.cs" Line="60" Column="5" />
+      <File FileName="ConvaysGameOfLife/ConfigWindow.cs" Line="78" Column="1" />
+      <File FileName="ConvaysGameOfLife/Config/BasicConfig.cs" Line="69" Column="27" />
+      <File FileName="ConvaysGameOfLife/Config/ISeedDesigner.cs" Line="1" Column="1" />
+      <File FileName="ConvaysGameOfLife/RandomSeedGenerator.cs" Line="32" Column="3" />
       <File FileName="ConvaysGameOfLife/Config/ConfiguratorEventArgs.cs" Line="1" Column="1" />
-      <File FileName="ConvaysGameOfLife/Config/SeedDesignerEnum.cs" Line="1" Column="1" />
+      <File FileName="ConvaysGameOfLife/Config/SeedDesignerEnum.cs" Line="7" Column="9" />
       <File FileName="ConvaysGameOfLife/Config/SeedEventArgs.cs" Line="1" Column="1" />
+      <File FileName="ConvaysGameOfLife/VisualSeedDesigner.cs" Line="70" Column="4" />
+      <File FileName="ConvaysGameOfLife/gtk-gui/MainWindow.cs" Line="165" Column="75" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -39,10 +41,9 @@
           <Node name="ConvaysGameOfLife" expanded="True">
             <Node name="UserInterface" expanded="True" />
             <Node name="Config" expanded="True" />
-            <Node name="Game" expanded="True">
-              <Node name="ConwaysRules.cs" selected="True" />
-            </Node>
+            <Node name="Game" expanded="True" />
             <Node name="Graphics" expanded="True" />
+            <Node name="VisualSeedDesigner.cs" selected="True" />
           </Node>
         </State>
       </Pad>
@@ -52,9 +53,7 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/home/dodo/source/ConvaysGameOfLife/ConvaysGameOfLife/ConfigWindow.cs" line="78" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
