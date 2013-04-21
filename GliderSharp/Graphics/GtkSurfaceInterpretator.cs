@@ -30,7 +30,8 @@ namespace GliderSharp.Graphics
 			Gtk.Application.Invoke (delegate {
 				pixbuf2 = imgWidget.Pixbuf;
 				imgWidget.Pixbuf = pixbuf1;
-				pixbuf2.Dispose ();
+				if (pixbuf2 != null)
+					pixbuf2.Dispose ();
 			});
 		}
 		#endregion

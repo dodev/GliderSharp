@@ -39,16 +39,17 @@ namespace GliderSharp
 			}
 		}
 
-		protected void buttonCancel_onClick (object sender, EventArgs e)
+		protected void buttonCancel_onClicked (object sender, EventArgs e)
 		{
 			OnFinished (false);
 			this.Destroy ();
 		}
 
-		protected void buttonAccept_onClick (object sender, EventArgs e)
+		protected void buttonAccept_onClicked (object sender, EventArgs e)
 		{
 			float density = 0;
-			if (float.TryParse (entryDensity.Text, out density)) {
+			if (float.TryParse (entryDensity.Text, out density) &&
+			    (density >= 0 && density <= 1)) {
 
 				seed = new CellState[conf.Rows, conf.Cols];
 				Random rand = new Random ();

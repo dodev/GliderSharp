@@ -27,21 +27,6 @@ namespace GliderSharp
 			this.Build ();
 		}
 
-		protected void VisualSeedDesigner_onmapEvent (object o, MapEventArgs args)
-		{
-			Bitmap image = new Bitmap (BasicConfig.SurfaceWidth, BasicConfig.SurfaceHeight);
-
-			using (MemoryStream stream = new MemoryStream ()) {
-				image.Save (stream, ImageFormat.Bmp);
-				stream.Position = 0;
-				image1.Pixbuf = new Pixbuf (stream);
-			}
-
-			// TODO: Draw grid;
-
-			image.Dispose ();
-		}
-
 		#region ISeedDesigner implementation
 
 		public event EventHandler<SeedEventArgs> Finished;
@@ -52,8 +37,7 @@ namespace GliderSharp
 			engine = new GraphicsEngine (conf);
 			engine.ShowGrid = true;
 			engine.ShowBorder = true;
-			gtkInterpretator = new GtkSurfaceInterpretator (image1);
-
+			gtkInterpretator = new GtkSurfaceInterpretator (this.image1);
 
 			aliveCells = new Dictionary<int, CellCoordinates> ();
 
@@ -61,6 +45,11 @@ namespace GliderSharp
 				seed = new CellState[conf.Rows, conf.Cols];
 			else
 				PopulateDict ();
+
+			labelRules.LabelProp = conf.Rules.ToString ();
+			labelNeighbourhood.LabelProp = conf.Neighbourhood.ToString ();
+			labelCol.LabelProp = String.Empty;
+			labelRow.LabelProp = String.Empty;
 
 			this.MapEvent += image1_HandleMapEvent;
 		}
@@ -108,8 +97,8 @@ namespace GliderSharp
 				else
 					aliveCells.Add (hash, coord);
 
-				this.labelX.LabelProp = coord.Row.ToString ();
-				this.labelY.LabelProp = coord.Col.ToString ();
+				this.labelCol.LabelProp = coord.Row.ToString ();
+				this.labelRow.LabelProp = coord.Col.ToString ();
 
 				System.Drawing.Image img = engine.DrawBlocks (aliveCells.Values);
 				gtkInterpretator.UpdateSurface (img);
@@ -117,7 +106,7 @@ namespace GliderSharp
 
 		}
 
-		protected void ButtonAccept_onClicked (object sender, EventArgs e)
+		protected void buttonAccept_onClicked (object sender, EventArgs e)
 		{
 			// build the seed from the dictionary
 			foreach (CellCoordinates kv in aliveCells.Values)

@@ -11,7 +11,7 @@ namespace GliderSharp
 		public static void Main (string[] args)
 		{
 			Application.Init ();
-			MainWindow win = new MainWindow ();
+			RunWindow win = new RunWindow ();
 			win.Show ();
 			Application.Run ();
 		}
