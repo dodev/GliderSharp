@@ -68,7 +68,6 @@
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="OutputConsole.cs" />
     <Compile Include="Game\INeighbourStrategy.cs" />
     <Compile Include="Game\IRule.cs" />
     <Compile Include="Game\RegularGrid.cs" />
@@ -91,22 +90,24 @@
     <Compile Include="Game\GameState.cs" />
     <Compile Include="Config\BasicConfig.cs" />
     <Compile Include="Config\ISeedDesigner.cs" />
-    <Compile Include="RandomSeedGenerator.cs" />
     <Compile Include="Config\ConfiguratorEventArgs.cs" />
     <Compile Include="Config\SeedEventArgs.cs" />
     <Compile Include="Config\SeedDesignerEnum.cs" />
-    <Compile Include="VisualSeedDesigner.cs" />
-    <Compile Include="ConfigWindow.cs" />
     <Compile Include="gtk-gui\GliderSharp.ConfigWindow.cs" />
     <Compile Include="gtk-gui\GliderSharp.RandomSeedGenerator.cs" />
     <Compile Include="gtk-gui\GliderSharp.VisualSeedDesigner.cs" />
-    <Compile Include="RunWindow.cs" />
     <Compile Include="gtk-gui\GliderSharp.RunWindow.cs" />
+    <Compile Include="GUI\ConfigWindow.cs" />
+    <Compile Include="GUI\OutputConsole.cs" />
+    <Compile Include="GUI\RandomSeedGenerator.cs" />
+    <Compile Include="GUI\RunWindow.cs" />
+    <Compile Include="GUI\VisualSeedDesigner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Game\" />
     <Folder Include="Config\" />
     <Folder Include="Graphics\" />
+    <Folder Include="GUI\" />
   </ItemGroup>
 </Project>

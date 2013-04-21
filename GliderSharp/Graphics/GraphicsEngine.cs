@@ -9,7 +9,6 @@ namespace GliderSharp.Graphics
 {
 	public class GraphicsEngine
 	{
-		Configuration config;
 		int blockSize;
 		Size imgSize;
 		Point gridBeginning;
@@ -22,7 +21,6 @@ namespace GliderSharp.Graphics
 
 		public GraphicsEngine (Configuration config)
 		{
-			this.config = config;
 			imgSize = new Size (BasicConfig.SurfaceWidth, BasicConfig.SurfaceHeight);
 
 			// determining the block's side depending on the image size
