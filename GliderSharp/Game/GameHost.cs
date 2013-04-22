@@ -48,6 +48,10 @@ namespace GliderSharp.Game
 			}
 		}
 
+		public Configuration Config {
+			get { return initConf; }
+		}
+
 		void DrawInitial ()
 		{
 			List<CellCoordinates> pointsToDraw = new List<CellCoordinates> (); // TODO: init with a proper size

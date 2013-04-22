@@ -110,6 +110,21 @@ namespace GliderSharp
 			controller.StartConf ();
 		}
 
+		protected void SaveItem_onActivated (object sender, EventArgs e)
+		{
+			Gtk.FileChooserDialog fc=
+				new Gtk.FileChooserDialog("Choose directory and filename to save the current database",
+				                          this,
+				                          FileChooserAction.Save,
+				                          "Cancel",ResponseType.Cancel,
+				                          "Save",ResponseType.Accept);
+
+			if (fc.Run () == (int)ResponseType.Accept) {
+				controller.SaveConf (fc.Filename);
+			}
+			fc.Destroy ();
+		}
+
 		void ConfWindow_HandleFinished (object sender, ConfiguratorEventArgs args)
 		{
 			if (sender != null) {
@@ -142,6 +157,21 @@ namespace GliderSharp
 		protected void buttonStep_onClicked (object sender, EventArgs e)
 		{
 
+		}
+
+		protected void Open_onActivated (object sender, EventArgs e)
+		{
+			Gtk.FileChooserDialog fc=
+				new Gtk.FileChooserDialog("Choose the file to open",
+				                          this,
+				                          FileChooserAction.Open,
+				                          "Cancel",ResponseType.Cancel,
+				                          "Open",ResponseType.Accept);
+
+			if (fc.Run () == (int)ResponseType.Accept) {
+				controller.LoadFullConf (new GtkSurfaceInterpretator (this.image1), fc.Filename);
+			}
+			fc.Destroy ();
 		}
 	}
 }

@@ -50,11 +50,12 @@ namespace GliderSharp.Game
 			}
 		}
 
-		public void LoadFullConf (Configuration conf, ISurfaceInterpretator gint)
+		public void LoadFullConf (ISurfaceInterpretator gint, string path)
 		{
 			if (state == GameState.RUN || state == GameState.DESIGNER)
 				game.Dispose ();
-
+			var xmls = new XmlSerializer ();
+			var conf = xmls.LoadConfigFromFile (path);
 			game = new GameHost (conf, gint);
 			game.TickFinished += OnGameTickFinished;
 			game.Initialized += OnGameInitialized;
@@ -102,6 +103,15 @@ namespace GliderSharp.Game
 				game.Dispose ();
 				state = GameState.BLANK;
 			}
+		}
+
+		public void SaveConf (string path)
+		{
+			if (state == GameState.RUN) {
+				var xmlserializer = new XmlSerializer ();
+				xmlserializer.SaveConfigToFile (game.Config, path);
+			}
+
 		}
 
 		public event EventHandler<GameStateEventArgs> StateChanged;

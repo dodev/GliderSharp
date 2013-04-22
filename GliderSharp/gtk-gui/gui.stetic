@@ -679,12 +679,14 @@
         <property name="Label" translatable="yes">_Open</property>
         <property name="ShortLabel" translatable="yes">_Open</property>
         <property name="StockId">gtk-open</property>
+        <signal name="Activated" handler="Open_onActivated" />
       </action>
       <action id="saveAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes">_Save</property>
         <property name="ShortLabel" translatable="yes">_Save</property>
         <property name="StockId">gtk-save</property>
+        <signal name="Activated" handler="SaveItem_onActivated" />
       </action>
       <action id="quitAction">
         <property name="Type">Action</property>
