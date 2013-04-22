@@ -23,6 +23,8 @@ namespace GliderSharp.Game
 		private bool isStarted;
 		private bool isInitialized;
 
+		private int ticks;
+
 		public GameHost (Configuration conf, ISurfaceInterpretator gint)
 		{
 			initConf = conf;
@@ -71,6 +73,10 @@ namespace GliderSharp.Game
 
 			grid1 = new RegularGrid<CellState> (conf.Rows, conf.Cols, nCtx, conf.Seed);
 			grid2 = new RegularGrid<CellState> (conf.Rows, conf.Cols, nCtx);
+
+			ticks = 0;
+
+			OnInitialized ();
 
 			isInitialized = true;
 		}
@@ -122,20 +128,24 @@ namespace GliderSharp.Game
 
 			RegularGrid<CellState> bufGrid;
 			CellState bufState;
+			int population;
 			// list of cells that need to be drawn with state ALIVE
 			List<CellCoordinates> pointsToDraw = new List<CellCoordinates> (); // TODO: init with a proper size
 
 			// the game loop
 			for (;;) {
 				// begining of a tick
+				population = 0;
 
 				for (int i = 0; i < conf.Rows; i++) {
 					for (int j = 0; j < conf.Cols; j++) {
 						bufState = conf.Rules.CheckCell (grid1, i, j);
 
 						// if in the cell there is someting alive, we should draw it
-						if (bufState == CellState.ALIVE)
-							pointsToDraw.Add (new CellCoordinates (i,j));
+						if (bufState == CellState.ALIVE) {
+							pointsToDraw.Add (new CellCoordinates (i, j));
+							population++;
+						}
 
 						// write the state to the future grid
 						grid2[i,j] = bufState;
@@ -161,10 +171,30 @@ namespace GliderSharp.Game
 				grid1 = grid2;
 				grid2 = bufGrid;
 
+				OnTickFinished (ticks, population);
+				ticks++;
+
 				// pause the tread for a while :)
 				Thread.Sleep (conf.TickInterval);
 			}
 		}
+
+		public event EventHandler<TickFinishedEventArgs> TickFinished;
+
+		void OnTickFinished (int tn, int p)
+		{
+			if (TickFinished != null)
+				TickFinished (this, new TickFinishedEventArgs (tn, p));
+		}
+
+		public event EventHandler<GameInitializedEventArgs> Initialized;
+
+		void OnInitialized ()
+		{
+			if (Initialized != null)
+				Initialized (this, new GameInitializedEventArgs (conf.Neighbourhood, conf.Rules));
+		}
+
 		#region IDisposable implementation
 		public void Dispose ()
 		{
@@ -176,7 +206,28 @@ namespace GliderSharp.Game
 			}
 		}
 		#endregion
+	}
 
+	public class TickFinishedEventArgs : EventArgs
+	{
+		public int TickNum { get; set; }
+		public int Population { get; set; }
+		public TickFinishedEventArgs (int tickNum, int population) : base ()
+		{
+			TickNum = tickNum;
+			Population = population;
+		}
+	}
+
+	public class GameInitializedEventArgs : EventArgs
+	{
+		public INeighbourStrategy Neighbourhood { get; set; }
+		public IRule Rules { get; set; }
+		public GameInitializedEventArgs (INeighbourStrategy neigh, IRule rules)
+		{
+			Neighbourhood = neigh;
+			Rules = rules;
+		}
 	}
 }
 

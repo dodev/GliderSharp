@@ -660,7 +660,7 @@
       </widget>
     </child>
   </widget>
-  <widget class="Gtk.Window" id="GliderSharp.RunWindow" design-size="400 300">
+  <widget class="Gtk.Window" id="GliderSharp.RunWindow" design-size="1188 310">
     <action-group name="Default">
       <action id="FileAction">
         <property name="Type">Action</property>
@@ -696,9 +696,6 @@
     <property name="MemberName" />
     <property name="Title" translatable="yes">RunWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
-    <property name="Resizable">False</property>
-    <property name="DefaultWidth">1000</property>
-    <property name="DefaultHeight">632</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <signal name="MapEvent" handler="RunWindow_onmapEvent" />
     <child>
@@ -765,9 +762,21 @@
                   <widget class="Gtk.Table" id="table1">
                     <property name="MemberName" />
                     <property name="NRows">4</property>
-                    <property name="NColumns">2</property>
+                    <property name="NColumns">3</property>
                     <property name="RowSpacing">6</property>
                     <property name="ColumnSpacing">6</property>
+                    <child>
+                      <placeholder />
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
+                    <child>
+                      <placeholder />
+                    </child>
                     <child>
                       <widget class="Gtk.Label" id="label4">
                         <property name="MemberName" />
@@ -998,17 +1007,13 @@
               </widget>
               <packing>
                 <property name="Position">1</property>
-                <property name="AutoSize">True</property>
-                <property name="Expand">False</property>
-                <property name="Fill">False</property>
+                <property name="AutoSize">False</property>
               </packing>
             </child>
           </widget>
           <packing>
             <property name="Position">1</property>
-            <property name="AutoSize">True</property>
-            <property name="Expand">False</property>
-            <property name="Fill">False</property>
+            <property name="AutoSize">False</property>
           </packing>
         </child>
       </widget>

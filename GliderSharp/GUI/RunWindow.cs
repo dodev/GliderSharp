@@ -28,6 +28,24 @@ namespace GliderSharp
 
 			controller = new GameController ();
 			controller.StateChanged += controller_HandleStateChanged;
+			controller.GameTickFinished += HandleGameTickFinished;
+			controller.GameInitialized += HandleGameInitialized;
+		}
+
+		void HandleGameInitialized (object sender, GameInitializedEventArgs e)
+		{
+			Gtk.Application.Invoke (delegate {
+				labelNeighbourhoodRulesValue.LabelProp = e.Neighbourhood.ToString ();
+				labelRulesValue.LabelProp = e.Rules.ToString ();
+			});
+		}
+
+		void HandleGameTickFinished (object sender, TickFinishedEventArgs e)
+		{
+			Gtk.Application.Invoke (delegate {
+				labelPopulationValue.LabelProp = e.Population.ToString ();
+				labelTicksValue.LabelProp = e.TickNum.ToString ();
+			});
 		}
 
 		void controller_HandleStateChanged (object sender, GameStateEventArgs e)
@@ -123,7 +141,7 @@ namespace GliderSharp
 
 		protected void buttonStep_onClicked (object sender, EventArgs e)
 		{
-			throw new NotImplementedException ();
+
 		}
 	}
 }

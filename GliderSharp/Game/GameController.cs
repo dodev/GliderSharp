@@ -36,6 +36,8 @@ namespace GliderSharp.Game
 		{
 			if (state == GameState.CONFIG) {
 				game = new GameHost (conf, surface);
+				game.TickFinished += OnGameTickFinished;
+				game.Initialized += OnGameInitialized;
 				state = GameState.DESIGNER;
 			}
 		}
@@ -54,6 +56,8 @@ namespace GliderSharp.Game
 				game.Dispose ();
 
 			game = new GameHost (conf, gint);
+			game.TickFinished += OnGameTickFinished;
+			game.Initialized += OnGameInitialized;
 			state = GameState.RUN;
 		}
 
@@ -106,6 +110,22 @@ namespace GliderSharp.Game
 		{
 			if (StateChanged != null)
 				StateChanged (null, new GameStateEventArgs (state));
+		}
+
+		public event EventHandler<TickFinishedEventArgs> GameTickFinished;
+
+		void OnGameTickFinished (object sender, TickFinishedEventArgs args)
+		{
+			if (GameTickFinished != null)
+				GameTickFinished (sender, args);
+		}
+
+		public event EventHandler<GameInitializedEventArgs> GameInitialized;
+
+		void OnGameInitialized (object sender, GameInitializedEventArgs args)
+		{
+			if (GameInitialized != null)
+				GameInitialized (sender, args);
 		}
 
 		#region IDisposable implementation
