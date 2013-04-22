@@ -252,6 +252,7 @@ namespace GliderSharp
 			this.newAction.Activated += new global::System.EventHandler (this.menuItemNew_onActivated);
 			this.openAction.Activated += new global::System.EventHandler (this.Open_onActivated);
 			this.saveAction.Activated += new global::System.EventHandler (this.SaveItem_onActivated);
+			this.quitAction.Activated += new global::System.EventHandler (this.Quit_onActivated);
 			this.buttonStart.Clicked += new global::System.EventHandler (this.buttonStart_onClicked);
 			this.buttonStop.Clicked += new global::System.EventHandler (this.buttonStop_onClicked);
 			this.buttonStep.Clicked += new global::System.EventHandler (this.buttonStep_onClicked);

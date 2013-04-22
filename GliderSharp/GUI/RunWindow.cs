@@ -173,5 +173,19 @@ namespace GliderSharp
 			}
 			fc.Destroy ();
 		}
+
+		protected void Quit_onActivated (object sender, EventArgs e)
+		{
+			// TODO: close the window properly
+			if (image1.Pixbuf != null)
+				image1.Pixbuf.Dispose ();
+
+			controller.Dispose ();
+
+			// unsubscribe
+			ExceptionManager.UnhandledException -= OnUnhandledException;
+
+			Application.Quit ();
+		}
 	}
 }
