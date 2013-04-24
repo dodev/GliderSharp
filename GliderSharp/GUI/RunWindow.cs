@@ -187,5 +187,18 @@ namespace GliderSharp
 
 			Application.Quit ();
 		}
+
+		public void LoadInDesigner_onActivated (object o, EventArgs args)
+		{
+			var conf = controller.GetConf ();
+			if (conf != null) {
+				controller.GameStop ();
+				var sdesigner = new VisualSeedDesigner ();
+				sdesigner.Init (conf);
+				sdesigner.Finished += SeedDesigner_HandleFinished;
+				sdesigner.Show ();
+			}
+
+		}
 	}
 }

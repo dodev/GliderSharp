@@ -43,8 +43,10 @@ namespace GliderSharp
 
 			if (conf.Seed == null)
 				seed = new CellState[conf.Rows, conf.Cols];
-			else
+			else {
 				PopulateDict ();
+				seed = conf.Seed;
+			}
 
 			labelRules.LabelProp = conf.Rules.ToString ();
 			labelNeighbourhood.LabelProp = conf.Neighbourhood.ToString ();

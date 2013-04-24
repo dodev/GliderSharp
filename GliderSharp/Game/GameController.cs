@@ -44,7 +44,7 @@ namespace GliderSharp.Game
 
 		public void LoadSeed (CellState[,] seed)
 		{
-			if (state == GameState.DESIGNER) {
+			if (state == GameState.DESIGNER || state == GameState.RUN) {
 				game.AcceptSeed (seed);
 				state = GameState.RUN;
 			}
@@ -112,6 +112,14 @@ namespace GliderSharp.Game
 				xmlserializer.SaveConfigToFile (game.Config, path);
 			}
 
+		}
+
+		public Configuration GetConf ()
+		{
+			if (state == GameState.RUN) {
+				return game.Config;
+			}
+			return null;
 		}
 
 		public event EventHandler<GameStateEventArgs> StateChanged;

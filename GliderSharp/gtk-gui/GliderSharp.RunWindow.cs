@@ -10,6 +10,8 @@ namespace GliderSharp
 		private global::Gtk.Action openAction;
 		private global::Gtk.Action saveAction;
 		private global::Gtk.Action quitAction;
+		private global::Gtk.Action EditAction;
+		private global::Gtk.Action LoadInDesignerAction;
 		private global::Gtk.VBox vbox1;
 		private global::Gtk.MenuBar menubar1;
 		private global::Gtk.HBox hbox1;
@@ -52,6 +54,12 @@ namespace GliderSharp
 			this.quitAction = new global::Gtk.Action ("quitAction", global::Mono.Unix.Catalog.GetString ("_Quit"), null, "gtk-quit");
 			this.quitAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Quit");
 			w1.Add (this.quitAction, null);
+			this.EditAction = new global::Gtk.Action ("EditAction", global::Mono.Unix.Catalog.GetString ("Edit"), null, null);
+			this.EditAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Edit");
+			w1.Add (this.EditAction, null);
+			this.LoadInDesignerAction = new global::Gtk.Action ("LoadInDesignerAction", global::Mono.Unix.Catalog.GetString ("Load in designer"), null, null);
+			this.LoadInDesignerAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Load in designer");
+			w1.Add (this.LoadInDesignerAction, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.Name = "GliderSharp.RunWindow";
@@ -61,7 +69,7 @@ namespace GliderSharp
 			this.vbox1 = new global::Gtk.VBox ();
 			this.vbox1.Name = "vbox1";
 			// Container child vbox1.Gtk.Box+BoxChild
-			this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='newAction' action='newAction'/><menuitem name='openAction' action='openAction'/><menuitem name='saveAction' action='saveAction'/><menuitem name='quitAction' action='quitAction'/></menu></menubar></ui>");
+			this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='newAction' action='newAction'/><menuitem name='openAction' action='openAction'/><menuitem name='saveAction' action='saveAction'/><menuitem name='quitAction' action='quitAction'/></menu><menu name='EditAction' action='EditAction'><menuitem name='LoadInDesignerAction' action='LoadInDesignerAction'/></menu></menubar></ui>");
 			this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 			this.menubar1.Name = "menubar1";
 			this.vbox1.Add (this.menubar1);
@@ -253,6 +261,7 @@ namespace GliderSharp
 			this.openAction.Activated += new global::System.EventHandler (this.Open_onActivated);
 			this.saveAction.Activated += new global::System.EventHandler (this.SaveItem_onActivated);
 			this.quitAction.Activated += new global::System.EventHandler (this.Quit_onActivated);
+			this.LoadInDesignerAction.Activated += new global::System.EventHandler (this.LoadInDesigner_onActivated);
 			this.buttonStart.Clicked += new global::System.EventHandler (this.buttonStart_onClicked);
 			this.buttonStop.Clicked += new global::System.EventHandler (this.buttonStop_onClicked);
 			this.buttonStep.Clicked += new global::System.EventHandler (this.buttonStep_onClicked);

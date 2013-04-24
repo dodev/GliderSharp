@@ -695,6 +695,17 @@
         <property name="StockId">gtk-quit</property>
         <signal name="Activated" handler="Quit_onActivated" />
       </action>
+      <action id="EditAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Edit</property>
+        <property name="ShortLabel" translatable="yes">Edit</property>
+      </action>
+      <action id="LoadInDesignerAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Load in designer</property>
+        <property name="ShortLabel" translatable="yes">Load in designer</property>
+        <signal name="Activated" handler="LoadInDesigner_onActivated" />
+      </action>
     </action-group>
     <property name="MemberName" />
     <property name="Title" translatable="yes">RunWindow</property>
@@ -713,6 +724,9 @@
                 <node type="Menuitem" action="openAction" />
                 <node type="Menuitem" action="saveAction" />
                 <node type="Menuitem" action="quitAction" />
+              </node>
+              <node type="Menu" action="EditAction">
+                <node type="Menuitem" action="LoadInDesignerAction" />
               </node>
             </node>
           </widget>
